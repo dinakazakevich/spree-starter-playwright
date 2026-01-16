@@ -1,9 +1,11 @@
-# Find products without images and attach defaults
-Spree::Product.find_each do |product|
+image_files = Dir.glob(Rails.root.join('db', 'seed_images', '*.png'))
+
+Spree::Product.find_each.with_index do |product, index|
   next if product.images.any?
   
-  # Use Spree's image model
+  image_path = image_files[index % image_files.length]
+  
   product.images.create!(
-    attachment: File.open(Rails.root.join('db', 'seed_images', 'default_product.jpg'))
+    attachment: File.open(image_path)
   )
 end
