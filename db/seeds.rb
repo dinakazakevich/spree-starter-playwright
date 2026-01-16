@@ -9,3 +9,4 @@
 #   end
 
 Spree::Core::Engine.load_seed if defined?(Spree::Core)
+load Rails.root.join('db', 'seeds', 'custom_product_images.rb')
