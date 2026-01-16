@@ -42,13 +42,13 @@ This quality engineering assignment began with a simple goal: design a test fram
 
 **What could be improved:**
 
-- Browser coverage: Currently only Chrome is enabled in the configuration
-- Mock Server Limitations: Mock server implementation is basic
-- Configuration Gaps: Limited retry strategies, no explicit test grouping or tagging
-- Adding images to sample data
+- [x] Browser coverage: Currently only Chrome is enabled in the configuration
+- [ ] Mock Server Limitations: Mock server implementation is basic
+- [ ] Configuration Gaps: Limited retry strategies, no explicit test grouping or tagging
+- [x] Adding images to sample data
 - Consider caching browser binaries
-- Manage environment variables and secrets better in CI
-- Consider caching re-usable docker images if they are stable in CI
+- [ ] Manage environment variables and secrets better in CI
+- [ ] Consider caching re-usable docker images if they are stable in CI
 
 ## Platform limitations
 
@@ -58,7 +58,15 @@ This quality engineering assignment began with a simple goal: design a test fram
 
 **Scalability Considerations**: Although Spree can handle significant traffic and product volumes, scaling the platform requires careful architectural planning. Automation scripts must account for potential performance bottlenecks and ensure reliability under load.
 
-**Sample data missing images**: I noticed that the sample data set is missing product images. I found an existing issue in the original project https://github.com/spree/spree/issues/10865. Spree no longer offers images within their sample app due to licensing and copy-right concerns. This can be fixed by uploading images after the sample data is loaded, you can use [free images from Unsplash](https://unsplash.com/).
+## Test data 
+
+**Sample data missing images**: I noticed that the sample data set is missing product images. I found an existing issue in the original project https://github.com/spree/spree/issues/10865. Spree no longer offers images within their sample app due to licensing and copy-right concerns. This can be fixed by uploading images after the sample data is loaded. 
+
+Images can be uploaded manually from free resources like [Unsplash](https://unsplash.com/) or I've added a custom task to load sample data with product images automatically attached, first add your images to `db/seed_images/` directory (PNG format recommended, I added a few as an example), then run the following instead of the original `bin/rake spree_sample:load`:
+```
+bin/rake spree_sample:load_with_images
+```
+This custom task loads Spree sample data and randomly assigns 3 images from the seed_images folder to each product.
 
 ## Testing Priority Outline
 

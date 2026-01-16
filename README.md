@@ -142,7 +142,17 @@ This will start the development server on http://localhost:3000.
 ```
 bin/rake spree_sample:load
 ```
-Note: The sample data set is missing images due to copyright concerns. Images can be uploaded manually into a local instance (e.g. free images from Unsplash) via the admin panel http://localhost:3000/admin:
+Note: The original sample data set added with this task is missing images due to copyright concerns. Images can be uploaded manually into a local instance (e.g. free images from Unsplash) via the admin panel http://localhost:3000/admin.
+
+**Alternative - Automated Image Seeding (Custom Addition):**
+
+To load sample data with product images automatically attached, first add your images to `db/seed_images/` directory (PNG format recommended, I added a few as an example), then run:
+```
+bin/rake spree_sample:load_with_images
+```
+This custom task loads Spree sample data and randomly assigns 3 images from the seed_images folder to each product.
+
+There is an option to add images manually via the admin panel http://localhost:3000/admin/
  
 ```
 Username: spree@example.com
